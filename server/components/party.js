@@ -23,6 +23,8 @@ function Party (players) {
   }
 
   this.players = players || [];
+
+  this.id = _.uniqueId('Party_');
   debug('Party created');
 }
 

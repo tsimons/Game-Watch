@@ -24,6 +24,11 @@ describe('Party Class', function () {
       party.players[0].should.be.exactly(player);
     });
 
+    it('adds an id', function () {
+      var party = new Party();
+      party.id.should.be.ok;
+    });
+
     describe('throws error', function () {
       var message = 'players must be either an array or an object';
       var test = function (param, done) {
