@@ -2,29 +2,28 @@ var gulp = require('gulp')
   , browserify = require('gulp-browserify')
   , uglify = require('gulp-uglify')
   , rename = require('gulp-rename')
-  , sass = require('gulp-sass')
+  , less = require('gulp-less')
   , livereload = require('gulp-livereload')
   , notify = require('gulp-notify')
   , plumber = require('gulp-plumber')
+  , path = require('path')
 ;
 
 gulp.task('css', function () {
-  return gulp.src('client/sass/app.scss')
-    .pipe(sass({
-      onSuccess: notify({
-        title: 'Sass',
-        message: 'Successfully Compiled',
-        icon: 'assets/sass.png'
-      }),
-      onError: function (err) {
-        return notify().write(err);
-      }
+  return gulp.src('client/less/app.less')
+    .pipe(plumber({errorHandler: notify.onError({
+      title: 'ERROR',
+      message: '<%= error.message %>',
+      icon: 'assets/less.png'
+    })}))
+    .pipe(less({
+      paths: ['./node_modules/material-ui/src/less/'],
+      compress: true
     }))
     .pipe(gulp.dest('client/build/css'))
     .pipe(notify({
-      title: 'Sass',
-      message: 'Successfully compiled',
-      icon: 'assets/sass.png'
+      title: 'SUCCESS',
+      icon: 'assets/less.png'
     }))
     .pipe(livereload())
   ;
