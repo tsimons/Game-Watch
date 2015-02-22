@@ -40,6 +40,13 @@ describe('Timer Class', function () {
 
       timer.emit.restore();
     });
+
+    it('doesn\'t start when no time remains', function () {
+      timer = new Timer();
+      timer._remaining = 0;
+      timer.start();
+      (!timer._startTime).should.be.true;
+    });
   });
 
   describe('pause method', function () {

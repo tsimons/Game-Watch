@@ -25,9 +25,13 @@ Timer.prototype = _.extend(Timer.prototype, EventEmitter.prototype, {
    * @chainable
    */
   start: function () {
-    this._startTime = new Date();
-    this.emit('start');
-    debug('starting timer');
+    if (this._remaining > 0) {
+      this._startTime = new Date();
+      this.emit('start');
+      debug('starting timer');
+    } else {
+      debug('attempting to start when no time left');
+    }
     return this;
   },
 
