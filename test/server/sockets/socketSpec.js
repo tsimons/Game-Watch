@@ -2,7 +2,7 @@ var client = require('socket.io-client')
   , config = require('../../../server/config');
 ;
 
-describe('socket connection', function () {
+describe.skip('socket connection', function () {
   var socket;
 
   beforeEach(function () {
