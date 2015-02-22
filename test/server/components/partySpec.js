@@ -1,4 +1,4 @@
-var Party = require('../../../server/components/Party')
+var Party = require('../../../server/components/party')
   , sinon = require('sinon')
 ;
 
