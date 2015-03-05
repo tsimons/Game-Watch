@@ -45,6 +45,21 @@ Party.prototype = _.extend(Party.prototype, EventEmitter.prototype, {
     }).length === 0;
   },
 
+  _assignOrder: function () {
+    var nums = (new Array(this.players.length - 1)).map(function (num, i) {
+      return i;
+    });
+
+    this.players = this.players.map(function (player) {
+      if (!player.order) {
+        player.order = _.random(nums);
+      }
+      nums.splice(player.order, 1);
+
+      return player;
+    });
+  },
+
   /**
    * Adds a player to the party if they dont already match another player
    *
@@ -57,6 +72,10 @@ Party.prototype = _.extend(Party.prototype, EventEmitter.prototype, {
       this.players.push(player);
       this.emit('player:added');
       debug('Adding player: ' + player.name + ' to the party');
+    }
+
+    if (this.started) {
+      this.order();
     }
 
     return this;
@@ -96,6 +115,18 @@ Party.prototype = _.extend(Party.prototype, EventEmitter.prototype, {
     }
 
     return this;
+  },
+
+  order: function () {
+    this._assignOrder();
+    this.players = _.sortBy(this.players, 'order');
+    this.emit('player:sort');
+  },
+
+  start: function () {
+    this.order();
+    this.started = true;
+    this.players[0].timer.start();
   }
 });
 

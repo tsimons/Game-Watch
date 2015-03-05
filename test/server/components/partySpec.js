@@ -75,6 +75,12 @@ describe('Party Class', function () {
     });
   });
 
+  describe('_assignOrder method', function () {
+    it('acknowledges pre assigned order', function () {
+      var party = new Party();      
+    });
+  });
+
   describe('add method', function () {
     var john, party
     beforeEach(function () {
