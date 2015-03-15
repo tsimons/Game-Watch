@@ -46,9 +46,11 @@ Party.prototype = _.extend(Party.prototype, EventEmitter.prototype, {
   },
 
   _assignOrder: function () {
-    var nums = (new Array(this.players.length - 1)).map(function (num, i) {
-      return i;
-    });
+    var i, nums = [];
+
+    for (i = 0; i < this.players.length; i++) {
+      nums.push(i);
+    }
 
     this.players = this.players.map(function (player) {
       if (!player.order) {
