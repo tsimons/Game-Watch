@@ -30,6 +30,7 @@
     "debug": "^2.1.1",
     "gulp": "^3.8.10",
     "gulp-browserify": "^0.5.1",
+    "gulp-less": "^3.0.0",
     "gulp-livereload": "^3.2.0",
     "gulp-notify": "^2.1.0",
     "gulp-plumber": "^0.6.6",
@@ -39,8 +40,7 @@
     "should": "^4.4.4",
     "sinon": "^1.12.2",
     "socket.io-client": "^1.2.1",
-    "supertest": "^0.15.0",
-    "gulp-less": "~2.0.1"
+    "supertest": "^0.15.0"
   },
   "browserify": {
     "transform": [
