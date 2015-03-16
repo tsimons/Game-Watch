@@ -17,7 +17,7 @@ gulp.task('css', function () {
       icon: 'assets/less.png'
     })}))
     .pipe(less({
-      paths: ['./node_modules/material-ui/src/less/'],
+      paths: ['./node_modules/bootstrap/less'],
       compress: true
     }))
     .pipe(gulp.dest('client/build/css'))
@@ -37,7 +37,7 @@ gulp.task('js', function () {
       icon: 'assets/js.png'
     })}))
     .pipe(browserify())
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(rename('app.js'))
     .pipe(gulp.dest('client/build/js'))
     .pipe(notify({
@@ -52,7 +52,7 @@ gulp.task('watch', function () {
   livereload.listen();
   console.log('Now listening for changes...');
   gulp.watch(['client/js/**/*.js'], ['js']);
-  gulp.watch(['client/sass/**/*.scss'], ['css']);
+  gulp.watch(['client/less/**/*.less'], ['css']);
 })
 
 

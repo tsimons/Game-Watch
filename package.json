@@ -18,13 +18,15 @@
   },
   "homepage": "https://github.com/tsimons/Game-Watch",
   "dependencies": {
+    "bootstrap": "^3.3.2",
     "express": "^4.10.7",
     "lodash": "^2.4.1",
-    "react": "^0.12.2",
-    "react-tools": "^0.12.2",
-    "socket.io": "^1.2.1",
     "material-ui": "~0.6.1",
-    "react-router": "~0.11.6"
+    "react": "^0.12.2",
+    "react-bootstrap": "^0.16.1",
+    "react-router": "~0.11.6",
+    "react-tools": "^0.12.2",
+    "socket.io": "^1.2.1"
   },
   "devDependencies": {
     "debug": "^2.1.1",

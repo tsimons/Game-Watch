@@ -1,5 +1,28 @@
-@import "normalize";
+@import "bootstrap";
 
-// Material UI
-@import "scaffolding";
-@import "components";
+body {
+	font-family: "Roboto", sans-serif;
+	background: #F0F0F0;
+}
+
+.blade {
+	padding: .75em 1em;
+	margin: 1em;
+
+	background: #fff;
+}
+
+.join-party {
+	&:extend(.blade);
+}
+
+.create-party {
+	&:extend(.blade);
+}
+
+.divider {
+	display: block;
+	padding: 0 1em;
+	text-align: center;
+	font-style: italic;
+}
