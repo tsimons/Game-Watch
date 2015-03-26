@@ -1,10 +1,6 @@
 import { React } from 'react';
-import { Router } from 'react-router';
+import { RouteHandler, Link } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
-
-var RouteHandler = Router.RouteHandler
-  , Link = Router.Link
-;
 
 export class App extends React.Component {
   render () {
