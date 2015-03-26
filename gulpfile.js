@@ -1,4 +1,6 @@
 var gulp = require('gulp')
+  , sourcemaps = require('gulp-sourcemaps')
+  , to5 = require('gulp-6to5')
   , browserify = require('gulp-browserify')
   , uglify = require('gulp-uglify')
   , rename = require('gulp-rename')
@@ -27,18 +29,20 @@ gulp.task('css', function () {
     }))
     .pipe(livereload())
   ;
-})
+});
 
 gulp.task('js', function () {
-  return gulp.src('client/js/index.js')
+  return gulp.src(['client/js/**/*.js', '!client/js/vendor'])
     .pipe(plumber({errorHandler: notify.onError({
       title: 'ERROR',
       message: '<%= error.message %>',
       icon: 'assets/js.png'
     })}))
+    .pipe(sourcemaps.init())
+    .pipe(to5())
     .pipe(browserify())
-    // .pipe(uglify())
-    .pipe(rename('app.js'))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('.'))
     .pipe(gulp.dest('client/build/js'))
     .pipe(notify({
       title: 'SUCCESS',

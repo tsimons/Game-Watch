@@ -1,26 +1,28 @@
-var React = require('react')
-  , timerStore = require('../stores/timerStore')
-;
+import { React } from 'react';
+import { TimerStore } from '../stores/timerStore';
 
-exports = module.exports = React.createClass({
-  getInitialState: function () {
+export class Timer extends React.Component {
+  getInitialState () {
     return timerStore.getTime(this.props.player);
-  },
-  componentDidMount: function () {
+  }
+
+  componentDidMount () {
     timerStore.addChangeListener(this._onChange);
-  },
-  componentWillUnmount: function () {
+  }
+
+  componentWillUnmount () {
     timerStore.removeChangeListener(this._onChange);
-  },
-  render: function () {
+  }
+
+  render () {
     return (
       <h1 className="time">
         this.state.time
       </h1>
     );
-  },
+  }
 
-  _onChange: function () {
+  _onChange () {
     this.setState(timerStore.getTime(this.props.player));
   }
-});
+};

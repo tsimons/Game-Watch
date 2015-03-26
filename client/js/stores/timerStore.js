@@ -1,12 +1,13 @@
-var _ = require('lodash')
-  , EventEmitter = require('events').EventEmitter
-  , AppDispather = require('../dispatcher/appDispatcher')
-;
+import { _ } from 'lodash';
+import { events } from 'events'
+import { AppDispatcher } from '../dispatcher/appDispatcher'
 
 var timers = {}
   , _activePlayer = ''
   , _activeInterval
 ;
+
+var timerStore;
 
 function startTimer () {
   if (_activeInterval) { clearInterval(_activeInterval) };
@@ -24,27 +25,26 @@ function tick () {
   TimerStore.emitChange();
 }
 
-var CHANGE_EVENT = 'change';
+const CHANGE_EVENT = 'change';
 
-var TimerStore = _.extend({}, EventEmitter.prototype, {
+export var TimerStore = _.assign(events.EventEmitter.prototype, {
   emitChange: function () {
     this.emit(CHANGE_EVENT);
   },
+
   getTime: function (player) {
-    return timers[player];
+    return timers[player]
   },
+
   addChangeListener: function (cb) {
     this.on(CHANGE_EVENT, cb);
   },
+
   removeChangeListener: function (cb) {
     this.removeListener(CHANGE_EVENT, cb);
   }
-});
+};
 
 AppDispather.register(function (action) {
-  switch(action.actionType) {
-
-  }
+  
 });
-
-exports = module.exports = TimerStore;

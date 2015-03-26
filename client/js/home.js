@@ -1,23 +1,18 @@
-var React = require('react')
+import { React } from 'react';
+import { Router } from 'react-router';
+import { ButtonGroup, Button, Input, Glyphicon } from 'react-bootstrap';
 
-  , Router = require('react-router')
-  , RouteHandler = Router.RouteHandler
+var RouteHandler = Router.RouteHandler;
 
-  , Bootstrap = require('react-bootstrap')
-  , ButtonGroup = Bootstrap.ButtonGroup
-  , Button = Bootstrap.Button
-  , Input = Bootstrap.Input
-  , Glyphicon = Bootstrap.Glyphicon
-;
 
-var Home = React.createClass({
-  getInitialState: function () {
+export class Home extends React.Component {
+  getInitialState () {
     return {
       value: ''
     }
-  },
+  }
 
-  render: function () {
+  render () {
     return (
       <div className="home">
         <section className="blade clearfix">
@@ -36,6 +31,4 @@ var Home = React.createClass({
       </div>
     );
   }
-});
-
-exports = module.exports = Home;
+}

@@ -1,29 +1,28 @@
-var React = require('react')
-  Timer = require('../components/timer')
-  timerStore = require('../stores/timerStore')
-;
+import { React } from 'react';
+import { Timer } from '../components/timer';
+import { TimerStore } from '../stores/timerStore';
 
-exports = module.exports = React.createClass({
-  getInitialState: function () {
+export class TimerView extends React.Component {
+  getInitialState () {
     return {
       timers: timerStore.getTimers()
     };
-  },
+  }
 
-  componentDidMount: function() {
+  componentDidMount () {
     timerStore.addChangeListener(this._onChange);
-  },
+  }
 
-  componentWillUnmount: function() {
+  componentWillUnmount () {
     timerStore.removeChangeListener(this._onChange);
-  },
+  }
 
-  render: function () {
+  render () {
     return (
       <div className="timer-container">
         <section className="main-timer">
           <h3 className="timer-heading">Your Turn</h3>
-          <Timer player={} size="large" />
+          <Timer size="large" />
           <p className="timer-instructions">Click screen to finish turn</p>
         </section>
         <section className="timers">
@@ -33,11 +32,11 @@ exports = module.exports = React.createClass({
         </section>
       </div>
     );
-  },
+  }
 
-  _onChange: function () {
+  _onChange () {
     this.setState({
       timers: timerStore.getTimers()
     });
   }
-});
+};

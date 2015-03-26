@@ -1,13 +1,13 @@
-var React = require('react')
-  , App = require('./app')
-  , Home = require('./views/home')
-  , Timer = require('./views/timer')
+import { React } from 'react';
+import { App } from './app'
+import { Home } from './views/home';
+import { Timer } from './views/timer';
+import { Router } from 'react-router';
 
-  // Router
-  , Router = require('react-router')
-  , Route = Router.Route
+var Route = Router.Route
   , DefaultRoute = Router.DefaultRoute
 ;
+
 
 var routes = (
   <Route path="/" handler={App} name="app">

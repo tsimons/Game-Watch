@@ -1,19 +1,13 @@
-/** @jsx React.DOM */
+import { React } from 'react';
+import { Router } from 'react-router';
+import { Navbar, Nav, NavItem } from 'react-bootstrap';
 
-var React = require('react')
-  , Router = require('react-router')
-  , RouteHandler = Router.RouteHandler
+var RouteHandler = Router.RouteHandler
   , Link = Router.Link
-
-  , Navbar = require('react-bootstrap').Navbar
-  , Nav = require('react-bootstrap').Nav
-  , NavItem = require('react-bootstrap').NavItem
 ;
 
-var App = React.createClass({
-  mixins: [Router.State],
-
-  render: function() {
+export class App extends React.Component {
+  render () {
     return (
       <div className="app">
         <Navbar brand="Game Watch" toggleNavKey={0}>
@@ -27,6 +21,4 @@ var App = React.createClass({
     );
   }
 
-});
-
-module.exports = App;
+};
