@@ -1,5 +1,3 @@
-/** @jsx React.DOM */
-
 jest.dontMock('../app.js')
 
 describe('app', function () {

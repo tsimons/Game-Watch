@@ -1,9 +1,8 @@
 var gulp = require('gulp')
   , sourcemaps = require('gulp-sourcemaps')
-  , to5 = require('gulp-6to5')
+  , babel = require('gulp-babel')
   , browserify = require('gulp-browserify')
   , uglify = require('gulp-uglify')
-  , rename = require('gulp-rename')
   , less = require('gulp-less')
   , livereload = require('gulp-livereload')
   , notify = require('gulp-notify')
@@ -31,18 +30,31 @@ gulp.task('css', function () {
   ;
 });
 
-gulp.task('js', function () {
-  return gulp.src(['client/js/**/*.js', '!client/js/vendor'])
+gulp.task('dumbify', function () {
+  return gulp.src('client/js/**/*.js')
     .pipe(plumber({errorHandler: notify.onError({
       title: 'ERROR',
       message: '<%= error.message %>',
       icon: 'assets/js.png'
     })}))
-    .pipe(sourcemaps.init())
-    .pipe(to5())
+    .pipe(sourcemaps.init({ loadMaps: true }))
+    .pipe(babel())
+    .pipe(sourcemaps.write())
+    .pipe(gulp.dest('client/.tmp/js/'))
+  ;
+});
+
+gulp.task('js', ['dumbify'], function () {
+  return gulp.src('client/.tmp/js/index.js')
+    .pipe(plumber({errorHandler: notify.onError({
+      title: 'ERROR',
+      message: '<%= error.message %>',
+      icon: 'assets/js.png'
+    })}))
+    .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(browserify())
     .pipe(uglify())
-    .pipe(sourcemaps.write('.'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('client/build/js'))
     .pipe(notify({
       title: 'SUCCESS',
@@ -55,7 +67,7 @@ gulp.task('js', function () {
 gulp.task('watch', function () {
   livereload.listen();
   console.log('Now listening for changes...');
-  gulp.watch(['client/js/**/*.js'], ['js']);
+  gulp.watch(['client/js/**/*.js', '!client/.tmp/**/*'], ['js']);
   gulp.watch(['client/less/**/*.less'], ['css']);
 })
 

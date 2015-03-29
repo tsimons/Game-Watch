@@ -1,6 +1,6 @@
-import { _ } from 'lodash';
-import { events } from 'events'
-import { AppDispatcher } from '../dispatcher/appDispatcher'
+import _ from 'lodash';
+import { EventEmitter } from 'events'
+import AppDispatcher from '../dispatcher/appDispatcher'
 
 var timers = {}
   , _activePlayer = ''
@@ -27,7 +27,7 @@ function tick () {
 
 const CHANGE_EVENT = 'change';
 
-export var TimerStore = _.assign(events.EventEmitter.prototype, {
+export default TimerStore = _.assign(EventEmitter.prototype, {
   emitChange: function () {
     this.emit(CHANGE_EVENT);
   },
@@ -43,7 +43,7 @@ export var TimerStore = _.assign(events.EventEmitter.prototype, {
   removeChangeListener: function (cb) {
     this.removeListener(CHANGE_EVENT, cb);
   }
-};
+});
 
 AppDispather.register(function (action) {
   

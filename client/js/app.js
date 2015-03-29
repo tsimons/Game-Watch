@@ -1,4 +1,5 @@
-import { React } from 'react';
+import React from 'react';
+
 import { RouteHandler, Link } from 'react-router';
 import { Navbar, Nav, NavItem } from 'react-bootstrap';
 

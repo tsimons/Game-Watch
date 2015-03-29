@@ -1,6 +1,6 @@
-import { React } from 'react';
-import { Timer } from '../components/timer';
-import { TimerStore } from '../stores/timerStore';
+import React from 'react';
+import Timer from '../components/timer';
+import TimerStore from '../stores/timerStore';
 
 export class TimerView extends React.Component {
   getInitialState () {

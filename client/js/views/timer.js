@@ -1,13 +1,11 @@
-var React = require('react')
-	
-;
+import React from 'react'
 
-exports = module.exports = React.createClass({
-	render: function () {
+export class TimerView extends React.Component {
+	render () {
 		return (
 			<div className="timer-container">
 
 			</div>
 		);
 	}
-});
+}

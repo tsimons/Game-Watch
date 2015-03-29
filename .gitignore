@@ -2,3 +2,4 @@ node_modules
 vagrant/.vagrant
 build
 npm-debug.log
+.tmp
