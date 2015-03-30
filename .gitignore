@@ -3,3 +3,4 @@ vagrant/.vagrant
 build
 npm-debug.log
 .tmp
+*.DS_Store
