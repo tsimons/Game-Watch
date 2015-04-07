@@ -4,7 +4,7 @@
   "description": "Provides a chess timer style watch for an unlimited amount of players. Synchronizes time over a socket connection",
   "main": "server",
   "scripts": {
-    "test": "NODE_ENV=test mocha && jest",
+    "test": "NODE_ENV=test jest",
     "start": "node server"
   },
   "repository": {
@@ -20,6 +20,7 @@
   "dependencies": {
     "bootstrap": "^3.3.2",
     "express": "^4.10.7",
+    "flux": "^2.0.1",
     "lodash": "^2.4.1",
     "react": "^0.12.2",
     "react-bootstrap": "^0.16.1",
@@ -28,6 +29,7 @@
     "socket.io": "^1.2.1"
   },
   "devDependencies": {
+    "babel-jest": "^4.0.0",
     "debug": "^2.1.1",
     "gulp": "^3.8.10",
     "gulp-babel": "^4.0.0",
@@ -40,14 +42,23 @@
     "gulp-uglify": "^1.0.2",
     "react-tools": "^0.13.1",
     "should": "^4.4.4",
-    "sinon": "^1.12.2",
+    "sinon": "^1.14.1",
     "socket.io-client": "^1.2.1",
     "supertest": "^0.15.0"
   },
   "jest": {
-    "scriptPreprocessor": "<rootDir>/preprocessor.js",
+    "scriptPreprocessor": "<rootDir>/node_modules/babel-jest",
     "unmockedModulePathPatterns": [
       "<rootDir>/node_modules/react"
+    ],
+    "testFileExtensions": [
+      "es6",
+      "js"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "json",
+      "es6"
     ]
   }
 }

@@ -31,7 +31,7 @@ gulp.task('css', function () {
 });
 
 gulp.task('dumbify', function () {
-  return gulp.src('client/js/**/*.js')
+  return gulp.src(['client/js/**/*.js', '!client/**/*__tests__*'])
     .pipe(plumber({errorHandler: notify.onError({
       title: 'ERROR',
       message: '<%= error.message %>',
