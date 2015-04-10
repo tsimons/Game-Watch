@@ -1,24 +1,30 @@
 import { Store } from './Store';
-import AppDispatcher from '../dispatcher/AppDispatcher';
+import { AppDispatcher } from '../dispatcher/AppDispatcher';
 
-var _player = {};
+const _defaults = {
+  name: '',
+  party: '',
+  color: ''
+};
 
-export default playerStore = new Store({
+let _player = _defaults;
+
+export const playerStore = new Store({
   getPlayer: function () {
     return _player;
-  }
+  },
+
+  dispatcherIndex: AppDispatcher.register(function (payload) {
+    switch (payload.action.actionType) {
+      case 'create':
+      case 'update':
+        updateUser(payload.attrs);
+      break;
+    }
+  })
 });
 
 function updateUser (player = {}) {
   _player = assign(_player, player);
   UserStore.emitChange();
 }
-
-AppDispatcher.register(function (payload) {
-  switch (payload.action.actionType) {
-    case 'create':
-    case 'update':
-      updateUser(payload.attrs);
-    break;
-  }
-});

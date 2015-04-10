@@ -1,19 +1,19 @@
 import { Dispatcher } from 'flux';
 import { assign } from 'lodash';
 
-export default AppDisptacher = new Dispatcher();
+export let AppDispatcher = new Dispatcher();
 
-assign(AppDisptacher, {
-  handleViewAction (payload) {
+assign(AppDispatcher, {
+  handleViewAction (action) {
     this.dispatch({
-      payload,
+      action,
       source: 'view'
     });
   },
 
-  handleServerAction (payload) {
+  handleServerAction (action) {
     this.dispatch({
-      payload,
+      action,
       source: 'server'
     })
   }

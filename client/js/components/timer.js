@@ -1,9 +1,9 @@
 import React from 'react';
-import TimerStore from '../stores/timerStore';
+import { TimerStore } from '../stores/timerStore';
 
 export class Timer extends React.Component {
-  getInitialState () {
-    return timerStore.getTime(this.props.player);
+  constructor () {
+    this.state = timerStore.getTime(this.props.player);
   }
 
   componentDidMount () {

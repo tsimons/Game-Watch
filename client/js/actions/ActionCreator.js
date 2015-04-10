@@ -1,7 +1,7 @@
 import { AppDispatcher } from '../dispatcher/appDispatcher';
-import AppConstants from '../constants';
+import { AppConstants } from '../constants';
 
-export const userActions = {
+export const playerActions = {
   create (attrs) {
     AppDispatcher.handleViewAction({
       actionType: AppConstants.create,

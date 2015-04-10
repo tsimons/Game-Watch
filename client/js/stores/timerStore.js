@@ -1,33 +1,14 @@
-import _ from 'lodash';
 import { EventEmitter } from 'events'
-import AppDispatcher from '../dispatcher/appDispatcher'
+import { AppDispatcher } from '../dispatcher/appDispatcher'
+import { Store } from './Store';
 
 var timers = {}
   , _activePlayer = ''
-  , _activeInterval
 ;
-
-var timerStore;
-
-function startTimer () {
-  if (_activeInterval) { clearInterval(_activeInterval) };
-  _activeInterval = setInterval(tick, 1000);
-}
-
-function tick () {
-  var timer = timers[_activePlayer];
-
-  timer.time -= 1;
-  if (timer.time < 0) {
-    clearInterval(_activeInterval)
-  }
-
-  TimerStore.emitChange();
-}
 
 const CHANGE_EVENT = 'change';
 
-export default TimerStore = _.assign(EventEmitter.prototype, {
+export const TimerStore = new Store({
   emitChange: function () {
     this.emit(CHANGE_EVENT);
   },
@@ -42,9 +23,13 @@ export default TimerStore = _.assign(EventEmitter.prototype, {
 
   removeChangeListener: function (cb) {
     this.removeListener(CHANGE_EVENT, cb);
-  }
-});
+  },
 
-AppDispather.register(function (action) {
-  
+  dispatcherIndex: AppDispather.register(function (payload) {
+    switch (payload.action.actionType) {
+      case 'endTimer':
+      break;
+    }
+  })
+
 });

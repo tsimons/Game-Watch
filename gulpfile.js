@@ -31,15 +31,13 @@ gulp.task('css', function () {
 });
 
 gulp.task('dumbify', function () {
-  return gulp.src(['client/js/**/*.js', '!client/**/*__tests__*'])
+  return gulp.src(['client/js/**/*.js', '!client/**/*__tests__*', '!client/.tmp/*'])
     .pipe(plumber({errorHandler: notify.onError({
       title: 'ERROR',
       message: '<%= error.message %>',
       icon: 'assets/js.png'
     })}))
-    .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(babel())
-    .pipe(sourcemaps.write())
     .pipe(gulp.dest('client/.tmp/js/'))
   ;
 });
@@ -51,10 +49,9 @@ gulp.task('js', ['dumbify'], function () {
       message: '<%= error.message %>',
       icon: 'assets/js.png'
     })}))
-    .pipe(sourcemaps.init({ loadMaps: true }))
-    .pipe(browserify())
-    .pipe(uglify())
-    .pipe(sourcemaps.write())
+    .pipe(browserify({
+      debug: true
+    }))
     .pipe(gulp.dest('client/build/js'))
     .pipe(notify({
       title: 'SUCCESS',
