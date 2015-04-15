@@ -1,10 +1,13 @@
 import { Store } from './Store';
 import { AppDispatcher } from '../dispatcher/AppDispatcher';
+import { assign } from 'lodash';
 
 const _defaults = {
   name: '',
   party: '',
-  color: ''
+  color: '',
+  time: 10000,
+  active: true
 };
 
 let _player = _defaults;
@@ -18,13 +21,23 @@ export const playerStore = new Store({
     switch (payload.action.actionType) {
       case 'create':
       case 'update':
-        updateUser(payload.attrs);
-      break;
+        updatePlayer(payload.action.attrs);
+        break;
+
+      case 'start':
+        updatePlayer({ active: true });
+        break;
+      case 'stop':
+        updatePlayer({
+          time: payload.action.opts.time,
+          active: false
+        });
+        break;
     }
   })
 });
 
-function updateUser (player = {}) {
+function updatePlayer (player = {}) {
   _player = assign(_player, player);
-  UserStore.emitChange();
+  playerStore.emitChange();
 }

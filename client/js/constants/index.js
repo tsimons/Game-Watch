@@ -1,4 +1,6 @@
 export const AppConstants = {
   create: 'create',
-  update: 'update'
+  update: 'update',
+  start: 'start',
+  stop: 'stop'
 };

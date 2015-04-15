@@ -16,3 +16,18 @@ export const playerActions = {
     });
   }
 }
+
+export const timerActions = {
+  start () {
+    AppDispatcher.handleViewAction({
+      actionType: AppConstants.start
+    });
+  },
+
+  stop (opts) {
+    AppDispatcher.handleViewAction({
+      opts,
+      actionType: AppConstants.stop
+    });
+  }
+}

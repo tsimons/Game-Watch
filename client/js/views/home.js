@@ -1,16 +1,17 @@
 import React from 'react';
 import { RouteHandler } from 'react-router';
-import { ButtonGroup, Button, Input, Glyphicon } from 'react-bootstrap';
+import { Button, Input, Glyphicon, Well } from 'react-bootstrap';
 import { playerStore } from '../stores/playerStore';
 import { playerActions } from '../actions/ActionCreator';
 
-export class HomeView extends React.Component {
+export class Home extends React.Component {
 	constructor () {
+    this.state = {};
     this.state.player = playerStore.getPlayer();
   }
 
   componentWillMount () {
-    playerStore.addChangeListener(this._onChange);
+    playerStore.addChangeListener(this._onChange.bind(this));
   }
 
   componentWillUnmount () {
@@ -30,8 +31,7 @@ export class HomeView extends React.Component {
 		return (
 			<div className="home">
         <section className="blade clearfix">
-          <h3>Who Are you?</h3>
-          <h5>I really wanna know!</h5>
+          <h3>Join or Create a Party</h3>
 
           <Input
             type="text"
@@ -47,8 +47,6 @@ export class HomeView extends React.Component {
             onChange={this.handleFormChange.bind(component)}
             ref="playerColor" />
 
-					<h3>Join or Create a Party</h3>
-
 					<Input
 						type="text"
 						defaultValue={this.state.player.party}
@@ -56,10 +54,10 @@ export class HomeView extends React.Component {
             onChange={this.handleFormChange.bind(component)}
             ref="party" />
 
-					<ButtonGroup className="pull-right">
-						<Button bsStyle="primary"><i className="fa fa-users"></i> Join Party</Button>
-						<Button bsStyle="success"><i className="fa fa-plus"></i> Create Party</Button>
-					</ButtonGroup>
+					<Well>
+						<Button bsSize="large" block bsStyle="primary"><i className="fa fa-users"></i> Join Party</Button>
+						<Button bsSize="large" block bsStyle="success"><i className="fa fa-plus"></i> Create Party</Button>
+					</Well>
 				</section>
 			</div>
 		);
